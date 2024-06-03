@@ -13,6 +13,7 @@ export class HobbiesFormComponent implements OnInit{
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar) { }
   ngOnInit() {
 
+    // Initialize the form with form controls and validation
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [''],
@@ -20,23 +21,34 @@ export class HobbiesFormComponent implements OnInit{
       age: [{ value: '', disabled: true }],
       hobbies: this.fb.array([], Validators.required)
     });
+
+
+    // Subscribe to changes in the dateOfBirth field to update age automatically
     this.userForm.get('dateOfBirth')?.valueChanges.subscribe(date => {
       this.updateAge(date);
     });
   }
 
+
+  // Getter for hobbies form array
   get hobbies() {
     return this.userForm.get('hobbies') as FormArray;
   }
 
+
+  // Method to add a new hobby input field
   addHobby() {
     this.hobbies.push(this.fb.control(''));
   }
 
+
+  // Method to remove a hobby input field by index
   removeHobby(index: number) {
     this.hobbies.removeAt(index);
   }
 
+
+  // Method to update the age field based on the date of birth
   updateAge(date: string) {
     if (date) {
       const age = this.calculateAge(date);
@@ -46,6 +58,8 @@ export class HobbiesFormComponent implements OnInit{
     }
   }
 
+
+  // Helper method to calculate age from the date of birth
   calculateAge(date: string): number {
     const birthDate = new Date(date);
     const today = new Date();
@@ -57,11 +71,15 @@ export class HobbiesFormComponent implements OnInit{
     return age;
   }
 
+
+  // Method to handle form submission
   onSave() {
 
     const hobbiesArray = this.hobbies.controls;
     let hasEmptyHobby = false;
 
+
+    // Check if any hobby input field is empty
     for (const hobbyControl of hobbiesArray) {
       if (!hobbyControl.value) {
         hobbyControl.setErrors({ required: true });
@@ -77,6 +95,9 @@ export class HobbiesFormComponent implements OnInit{
       return;
     }
 
+
+
+     // If form is valid, print the form values
     if (this.userForm.valid) {
       this.snackBar.open('Form saved successfully!', 'Close', {
         duration: 3000,

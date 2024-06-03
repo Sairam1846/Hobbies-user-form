@@ -1,8 +1,11 @@
 
   <mat-card>
     
+    <!-- Form wrapper with Angular Reactive Forms setup -->
     <form class="formbg" [formGroup]="userForm" (ngSubmit)="onSave()">
         <h2> Hobbies Form</h2>
+
+      <!-- First Name input field with validation -->
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
         <input matInput id="firstName" formControlName="firstName">
@@ -11,11 +14,13 @@
         </mat-error>
       </mat-form-field>
   
+      <!-- Last Name input field -->
       <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
         <input matInput id="lastName" formControlName="lastName">
       </mat-form-field>
   
+      <!-- Date of Birth input field with date picker and validation -->
       <mat-form-field appearance="outline">
         <mat-label>Date of Birth</mat-label>
         <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth">
@@ -26,11 +31,13 @@
         </mat-error>
       </mat-form-field>
   
+      <!-- Age input field (readonly, calculated automatically) -->
       <mat-form-field appearance="outline">
         <mat-label>Age</mat-label>
         <input matInput id="age" formControlName="age" readonly>
       </mat-form-field>
   
+      <!-- Hobbies dynamic form array -->
       <div formArrayName="hobbies">
         <label>Your Hobbies:</label>
         <button mat-raised-button color="primary" type="button" (click)="addHobby()">Add Hobby</button>
@@ -47,6 +54,7 @@
         </mat-error>
       </div>
   
+      <!-- Save button -->
       <button class="btn_save" mat-raised-button color="accent" type="submit">Save</button>
     </form>
   </mat-card>
