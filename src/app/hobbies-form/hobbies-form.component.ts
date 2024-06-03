@@ -1,5 +1,6 @@
 import { Component,OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-hobbies-form',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 export class HobbiesFormComponent implements OnInit{
 
   userForm!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) { }
   ngOnInit() {
 
     this.userForm = this.fb.group({
@@ -57,9 +58,34 @@ export class HobbiesFormComponent implements OnInit{
   }
 
   onSave() {
+
+    const hobbiesArray = this.hobbies.controls;
+    let hasEmptyHobby = false;
+
+    for (const hobbyControl of hobbiesArray) {
+      if (!hobbyControl.value) {
+        hobbyControl.setErrors({ required: true });
+        hasEmptyHobby = true;
+      }
+    }
+
+    if (hasEmptyHobby) {
+      this.snackBar.open('Please fill out all hobby fields.', 'Close', {
+        duration: 3000,
+      });
+      console.log('Please fill out all hobby fields');
+      return;
+    }
+
     if (this.userForm.valid) {
+      this.snackBar.open('Form saved successfully!', 'Close', {
+        duration: 3000,
+      });
       console.log(this.userForm.getRawValue());
     } else {
+      this.snackBar.open('Form is invalid. Please correct the errors and try again.', 'Close', {
+        duration: 3000,
+      });
       console.log('Form is invalid');
     }
   }
