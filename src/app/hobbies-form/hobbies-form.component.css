@@ -27,7 +27,7 @@ form div {
     margin: 20px auto;
     padding: 100px;
     background: #6b6fe2;
-    height: 100vh;
+    height: auto;
     margin: auto;
     background-image: linear-gradient(to right, rgb(59 60 66 / 80%) 15%, rgb(22 18 36 / 85%)), url('../../assets/bg.jpg');
     background-position: right;
@@ -60,9 +60,11 @@ form div {
 
   .delete_btn{
     position: absolute;
-    bottom: 19%;
+    /* bottom: 19%; */
     right: 38%;
   }
+
+  
 
   .mt-2{
     margin-top:20px !important;
