@@ -49,14 +49,14 @@ export class HobbiesFormComponent implements OnInit{
 
 
   // Method to update the age field based on the date of birth
-  updateAge(date: string) {
-    if (date) {
-      const age = this.calculateAge(date);
-      this.userForm.get('age')?.setValue(age);
-    } else {
-      this.userForm.get('age')?.setValue('');
+    updateAge(date: string) {
+      if (date) {
+        const age = this.calculateAge(date);
+        this.userForm.get('age')?.setValue(age);
+      } else {
+        this.userForm.get('age')?.setValue('');
+      }
     }
-  }
 
 
   // Helper method to calculate age from the date of birth
