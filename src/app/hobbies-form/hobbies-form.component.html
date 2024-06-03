@@ -1,0 +1,95 @@
+<!-- <form [formGroup]="userForm" (ngSubmit)="onSave()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName">
+      <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+        First Name is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName">
+    </div>
+  
+    <div>
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input id="dateOfBirth" type="date" formControlName="dateOfBirth">
+      <div *ngIf="userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched">
+        Date of Birth is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="age">Age:</label>
+      <input id="age" formControlName="age" readonly>
+    </div>
+  
+    <div formArrayName="hobbies">
+      <label>Your Hobbies:</label>
+      <button type="button" (click)="addHobby()">Add</button>
+      <div *ngFor="let hobby of hobbies.controls; let i=index">
+        <input [formControlName]="i">
+        <button type="button" (click)="removeHobby(i)">Remove</button>
+      </div>
+      <div *ngIf="hobbies.invalid && (hobbies.dirty || hobbies.touched)">
+        You must have at least one hobby.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="userForm.invalid">Save</button>
+  </form> -->
+
+
+  <mat-card>
+    
+    <form class="formbg" [formGroup]="userForm" (ngSubmit)="onSave()">
+        <h2> Hobbies Form</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput id="firstName" formControlName="firstName">
+        <mat-error *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+          First Name is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput id="lastName" formControlName="lastName">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched">
+          Date of Birth is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput id="age" formControlName="age" readonly>
+      </mat-form-field>
+  
+      <div formArrayName="hobbies">
+        <label>Your Hobbies:</label>
+        <button mat-raised-button color="primary" type="button" (click)="addHobby()">Add Hobby</button>
+        <div *ngFor="let hobby of hobbies.controls; let i=index">
+          <mat-form-field appearance="outline" class="mt-2">
+            <input  matInput [formControlName]="i" placeholder="Hobby">
+          </mat-form-field>
+          <button class="delete_btn" mat-icon-button color="warn" type="button" (click)="removeHobby(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <mat-error *ngIf="hobbies.invalid && (hobbies.dirty || hobbies.touched)">
+          You must have at least one hobby.
+        </mat-error>
+      </div>
+  
+      <button class="btn_save" mat-raised-button color="accent" type="submit" [disabled]="userForm.invalid">Save</button>
+    </form>
+  </mat-card>
+  

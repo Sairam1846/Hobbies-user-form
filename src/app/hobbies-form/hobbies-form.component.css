@@ -1,0 +1,69 @@
+form div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+  
+  input, button {
+    margin-left: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+
+.btn_save{
+    
+    background: #fe0808 !important;
+    color: white !important;
+    width: 100%;
+    border-radius: 50px !important;
+}
+  mat-card {
+    width: 100%;
+    margin: 20px auto;
+    padding: 100px;
+    background: #6b6fe2;
+    height: 100vh;
+    margin: auto;
+    background-image: linear-gradient(to right, rgb(59 60 66 / 80%) 15%, rgb(22 18 36 / 85%)), url('../../assets/bg.jpg');
+    background-position: right;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 35px !important;
+    margin-bottom: 37px !important;
+    color: #fe0808;
+    font-weight: 700;
+    font-family: cursive;
+}
+  .formbg{
+    background: white;
+    padding: 100px;
+    width: 400px;
+    border-radius: 50px;
+    margin: auto;
+    box-shadow: 0px 0px 21px #685c5c;
+}
+  mat-form-field {
+    display: block;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+
+  .delete_btn{
+    position: absolute;
+    bottom: 19%;
+    right: 38%;
+  }
+
+  .mt-2{
+    margin-top:20px !important;
+  }
