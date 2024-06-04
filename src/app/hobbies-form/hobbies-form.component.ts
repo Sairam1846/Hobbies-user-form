@@ -1,16 +1,18 @@
 import { Component,OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-hobbies-form',
   templateUrl: './hobbies-form.component.html',
-  styleUrls: ['./hobbies-form.component.css']
+  styleUrls: ['./hobbies-form.component.css'],
+  providers: [DatePipe]
 })
 export class HobbiesFormComponent implements OnInit{
 
   userForm!: FormGroup;
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private datePipe: DatePipe) { }
   ngOnInit() {
 
     // Initialize the form with form controls and validation
@@ -102,7 +104,11 @@ export class HobbiesFormComponent implements OnInit{
       this.snackBar.open('Form saved successfully!', 'Close', {
         duration: 3000,
       });
-      console.log(this.userForm.getRawValue());
+
+
+    const formData = this.userForm.getRawValue();
+    formData.dateOfBirth = this.datePipe.transform(formData.dateOfBirth, 'dd-MM-yyyy');
+    console.log(formData);
     } else {
       this.snackBar.open('Form is invalid. Please correct the errors and try again.', 'Close', {
         duration: 3000,
